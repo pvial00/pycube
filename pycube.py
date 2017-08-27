@@ -1,5 +1,7 @@
 import sys, collections
 
+# pycube v0.1
+
 class Cube:
     def __init__(self, key):
         self.key_list = []
