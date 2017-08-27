@@ -1,1 +1,1 @@
-import pycube
+from pycube.Cube import Cube

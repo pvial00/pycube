@@ -1,6 +1,6 @@
-import sys, collections
+import sys
 
-# pycube v0.1
+# pycube v0.1.1
 
 class Cube:
     def __init__(self, key):
