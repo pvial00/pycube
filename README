@@ -6,4 +6,4 @@ Usage:
 from pycube import Cube
 Cube("KEY").encrypt("TEXT")
 or
-Cube("KEY").decrypt("TEXT")
+Cube("KEY").decrypt("YTFY")
