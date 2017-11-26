@@ -1,4 +1,4 @@
-# pycube v0.5.1
+# pycube v0.5.2
 
 class Cube:
     def __init__(self, key, nonce=""):
