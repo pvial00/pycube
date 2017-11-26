@@ -11,3 +11,27 @@ Cube("KEY").decrypt("YTFY")
 
 # With nonce support:
 Cube("KEY", "NONCE").encrypt("TEST")
+
+# CubeRandom  
+A-Z character generator  
+
+CubeRandom().random(numberofletters)  
+
+# CubeHash 
+Hash based on Cube  
+
+CubeHash().digest(data)  
+
+# CubeKDF  
+Key derivation function  
+
+CubeKDF().genkey(key)  
+
+Uused as a one time pad  
+
+CubeKDF(len(data), 1).genkey(key)
+
+# CubeHMAC  
+Encrypt with HMAC  
+CubeHMAC().encrypt(data, key)  
+CubeHMAC().decrypt(data, key)  
