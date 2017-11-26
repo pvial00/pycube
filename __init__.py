@@ -143,8 +143,8 @@ class CubeHash:
         self.hashlength = hashlength
         self.base = chr(basechar) * hashlength
 
-    def digest(self, data):
-        return Cube(data, self.base).encrypt(self.base)
+    def digest(self, data, key=""):
+        return Cube(key+data, self.base).encrypt(self.base)
 
 class CubeKDF:
     def __init__(self, keysize=32, iterations=10):
@@ -166,7 +166,7 @@ class CubeHMAC:
         if nonce == "":
             nonce = CubeRandom().random(self.nonce_length)
         hash_key = CubeKDF().genkey(primary_key)
-        msg = Cube(key, nonce).encrypt(data)
+        msg = Cube(primary_key, nonce).encrypt(data)
         digest1 = CubeHash().digest(key+aad+nonce+msg)
         digest = CubeHash().digest(hash_key+digest1)
         if pack == False:
@@ -180,7 +180,7 @@ class CubeHMAC:
         if pack == False:
             digest1 = CubeHash(key+aad+nonce+data).digest(key+aad+nonce+data)
             if CubeHash().digest(hash_key+digest1) == digest:
-                return Cube(key, nonce).decrypt(data)
+                return Cube(primary_key, nonce).decrypt(data)
             else:
                 raise ValueError('HMAC failed: Message has been tampered with!')
         else:
@@ -190,10 +190,9 @@ class CubeHMAC:
             msg = data[aadlen+self.nonce_length+self.digest_length:]
             digest1 = CubeHash().digest(key+aad+nonce+msg)
             if CubeHash().digest(hash_key+digest1) == digest:
-                return Cube(key, nonce).decrypt(msg)
+                return Cube(primary_key, nonce).decrypt(msg)
             else:
                 raise ValueError('HMAC failed: Message has been tampered with!')
-
 
 class DataNormalizer:
     def normalize(self, data):
