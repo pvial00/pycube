@@ -1,4 +1,6 @@
 A python library implementing the Cube 26 cipher
+*** Disclaimer - This cipher is meant for entertainment and educational purposes
+ only and should not be used to actually provide good security
 
 Supports characters A-Z only!
 
